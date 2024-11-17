@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD Fahim Al Fahad - Resume</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+            
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            background-color: #aef3ff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            animation: slideDown 1s ease-in-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header img {
+            border-radius: 50%;
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        .header p {
+            margin: 0;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            flex: 1 1 calc(50% - 20px);
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
+        .card:nth-child(3) { animation-delay: 0.6s; }
+        .card:nth-child(4) { animation-delay: 0.8s; }
+        .card:nth-child(5) { animation-delay: 1s; }
+        .card:nth-child(6) { animation-delay: 1.2s; }
+        .card:nth-child(7) { animation-delay: 1.4s; }
+
+        .card h2 {
+            font-size: 1.2rem;
+            color: #f57c00;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #f57c00;
+            display: inline-block;
+        }
+
+        .card p, .card ul {
+            font-size: 0.9rem;
+            color: #333;
+            margin: 0;
+        }
+
+        .card ul {
+            padding-left: 20px;
+            list-style-type: disc;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .info-item i {
+            background-color: #f57c00;
+            color: #ffffff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #666;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        a {
+            text-decoration: none;
+            color: #f57c00;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #d35400;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="Photo\img.jpg" alt="Profile Picture">
+            <h1>MD Fahim Al Fahad</h1>
+            <p>Computer Science Student</p>
+        </div>
+        
+        <div class="section">
+            <!-- Personal Information -->
+            <div class="card">
+                <h2>Personal Information</h2>
+                <div class="info">
+                    <div class="info-item">
+                        <i>📅</i> <span>26-11-2004</span>
+                    </div>
+                    <div class="info-item">
+                        <i>📧</i> <span>017fahim91@gmail.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i>📞</i> <span>01791134834</span>
+                    </div>
+                    <div class="info-item">
+                        <i>📍</i> <span>Uttara</span>
+                    </div>
+                    <div class="info-item">
+                        <i>🌐</i> <a href="https://facebook.com/fahim.af.75" target="_blank">facebook.com/fahim.af.75</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="card">
+                <h2>Skills</h2>
+                <p><strong>Language:</strong> English, Bangla, Japanese, Hindi, Urdu</p> 
+                <br>
+                <p><strong>Computer Skills:</strong> Adobe Photoshop, After Effects, Premiere Pro, Wondershare Filmora, Word, PowerPoint, Google Forms, Excel</p>
+                <br>
+                <!-- <p><strong>Programming Skil:</strong> HTML, C program , Node.js </p> -->
+            </div>
+
+        <!-- Work Experience -->
+        <div class="card">
+            <h2>Work Experience</h2>
+            <ul>
+                <li><strong>Tuition (2021 - Now):</strong> Tutored ICT, English, Physics, and Mathematics</li>
+                <li><strong>ZeusServer (2020 - 2023):</strong> Video Editor, VFX Designer</li>
+                <li><strong>Robi (2023 - 2024):</strong> Salesman</li>
+            </ul>
+        </div>
+            <!-- Education -->
+            <div class="card">
+                <h2>Education</h2>
+                <ul>
+                    <li><strong>Northern University Bangladesh:</strong> B.Sc. in CSE</li>
+                    <li><strong>HSC & SSC:</strong> Both in Science</li>
+                </ul>
+
+            </div>
+
+
+            <!-- Interests -->
+            <div class="card">
+                <h2>Interests</h2>
+                <p>Programming, Problem Solving, Gaming, Exploring New Technologies</p>
+            </div>          
+
+            <!-- Certifications -->
+            <div class="card">
+                <h2>Certifications</h2>
+                <ul>
+                    <li><strong>2019:</strong> Science Fair Certificate </li>
+                    <li><strong>2023:</strong> Computer Level 5 </li>
+                    <li><strong>2024:</strong> Electronics Level 2 Certification </li>
+                    <li><strong>2024:</strong> Japanese Language N5 Certification </li>
+                </ul>
+            </div>
+            <!-- Objective -->
+            <div class="card">
+                <h2>Objective</h2>
+                <p>I am completing my BSc in CSE at Northern University and simultaneously pursuing scholarships. I have already completed my IELTS in the NAT exam. In the next 4-5 years, I aim to gather enough experience to establish my own cybersecurity firm.</p>
+           </div> 
+            
+        </div>
+
+        <footer>
+            © 2024 MD Fahim Al Fahad
+        </footer>
+    </div>
+</body>
+</html>
