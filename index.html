@@ -1,271 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MD Fahim Al Fahad - Resume</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10151c">
+  <meta name="description" content="The portfolio and CV of MD Fahim Al Fahad, a CSE student and multidisciplinary creative technologist.">
+  <title>MD Fahim Al Fahad | Portfolio & CV</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #10151c;
+      --surface: #171f29;
+      --surface-soft: #1c2632;
+      --text: #f2f5f7;
+      --muted: #aab5c1;
+      --accent: #b8f36b;
+      --accent-2: #77ded0;
+      --line: rgba(255,255,255,.1);
+      --radius: 22px;
+      --max-width: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: radial-gradient(ellipse at 82% 5%, rgba(119,222,208,.09), transparent 32rem), var(--bg);
+      color: var(--text);
+      font: 16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+    .progress { position: fixed; inset: 0 auto auto 0; width: 0; height: 3px; background: var(--accent); z-index: 20; }
+    .wrap { width: min(var(--max-width), calc(100% - 40px)); margin: 0 auto; }
+    .nav { position: sticky; top: 0; z-index: 10; background: rgba(16,21,28,.82); border-bottom: 1px solid var(--line); backdrop-filter: blur(16px); }
+    .nav-inner { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-size: .9rem; font-weight: 750; letter-spacing: .04em; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 24px; color: var(--muted); font-size: .88rem; }
+    .nav-links a:hover { color: var(--accent); }
+    .hero { min-height: 590px; display: grid; grid-template-columns: 1.35fr .65fr; align-items: center; gap: 56px; padding-top: 60px; padding-bottom: 80px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--accent); font-size: .78rem; font-weight: 750; letter-spacing: .16em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 26px; height: 1px; background: currentColor; }
+    h1 { max-width: 100%; margin: 18px 0; font-size: clamp(2rem, 5.2vw, 4.1rem); line-height: 1.05; letter-spacing: -.065em; white-space: nowrap; }
+    h1 span { color: var(--accent); }
+    .hero-copy { max-width: 650px; color: var(--muted); font-size: 1.1rem; }
+    .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 46px; padding: 0 19px; border: 1px solid var(--line); border-radius: 999px; font-size: .9rem; font-weight: 700; transition: transform .2s, background .2s, border-color .2s; }
+    .button:hover { transform: translateY(-3px); border-color: var(--accent); }
+    .button.primary { background: var(--accent); border-color: var(--accent); color: #11170d; }
+    .portrait-frame { position: relative; justify-self: center; width: min(300px, 74vw); height: 430px; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; border: 1px solid rgba(184,243,107,.45); border-radius: 180px; transform: rotate(0deg); }
+    .portrait-frame::before { content: ""; position: absolute; inset: -14px; border: 1px dashed rgba(119,222,208,.4); border-radius: 190px; animation: orbit 32s linear infinite; }
+.photo-trigger { position: relative; z-index: 1; display: block; flex: 0 0 205px; width: min(205px, 100%); height: 205px; padding: 0; overflow: hidden; border: 4px solid var(--bg); border-radius: 50%; background: var(--surface); cursor: zoom-in; transition: transform .25s, border-color .25s, box-shadow .25s; }
+    .photo-trigger:hover, .photo-trigger:focus-visible { transform: scale(1.045); border-color: var(--accent); box-shadow: 0 0 0 3px rgba(184,243,107,.18); outline: none; }
+    .photo-trigger img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .photo-trigger + .photo-trigger { margin-top: -4px; }
+    .photo-dialog { width: min(760px, calc(100% - 32px)); max-width: 760px; max-height: calc(100% - 32px); padding: 0; overflow: visible; border: 1px solid rgba(184,243,107,.35); border-radius: 24px; background: var(--surface); color: var(--text); box-shadow: 0 28px 100px rgba(0,0,0,.55); }
+    .photo-dialog[open] { animation: photoIn .32s cubic-bezier(.2,.75,.25,1) both; }
+    .photo-dialog.is-closing { animation: photoOut .18s ease both; }
+    .photo-dialog::backdrop { background: rgba(5,9,13,.76); backdrop-filter: blur(7px); }
+    .photo-dialog-card { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, .8fr); gap: 26px; align-items: center; padding: 26px; }
+    .photo-dialog-image { display: block; justify-self: center; width: auto; max-width: 100%; height: min(58vh, 440px); object-fit: cover; border-radius: 15px; background: transparent; }
+    .photo-dialog-info h2 { margin: 8px 0 20px; font-size: clamp(1.7rem, 4vw, 2.35rem); line-height: 1.08; letter-spacing: -.045em; }
+    .photo-dialog-info p { margin: 0 0 13px; color: var(--muted); overflow-wrap: anywhere; }
+    .photo-dialog-info a { color: var(--text); }
+    .photo-dialog-info a:hover { color: var(--accent); }
+    .photo-close { position: absolute; top: 12px; right: 12px; z-index: 2; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; background: rgba(16,21,28,.88); color: var(--text); font-size: 1.35rem; line-height: 1; cursor: pointer; }
+    .photo-close:hover { color: var(--accent); border-color: var(--accent); }
+    @keyframes photoIn { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes photoOut { to { opacity: 0; transform: translateY(8px) scale(.97); } }
 
-            
-
-        .container {
-            width: 80%;
-            max-width: 1200px;
-            background-color: #aef3ff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 20px;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-            animation: slideDown 1s ease-in-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .header img {
-            border-radius: 50%;
-            width: 130px;
-            height: 130px;
-            object-fit: cover;
-            margin-bottom: 10px;
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: 1.8rem;
-            color: #333;
-        }
-
-        .header p {
-            margin: 0;
-            font-size: 1rem;
-            color: #666;
-        }
-
-        .section {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .card {
-            background-color: #ffffff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 20px;
-            flex: 1 1 calc(50% - 20px);
-            box-sizing: border-box;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 1s ease-in-out forwards;
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .card:nth-child(1) { animation-delay: 0.2s; }
-        .card:nth-child(2) { animation-delay: 0.4s; }
-        .card:nth-child(3) { animation-delay: 0.6s; }
-        .card:nth-child(4) { animation-delay: 0.8s; }
-        .card:nth-child(5) { animation-delay: 1s; }
-        .card:nth-child(6) { animation-delay: 1.2s; }
-        .card:nth-child(7) { animation-delay: 1.4s; }
-
-        .card h2 {
-            font-size: 1.2rem;
-            color: #f57c00;
-            margin-bottom: 10px;
-            border-bottom: 2px solid #f57c00;
-            display: inline-block;
-        }
-
-        .card p, .card ul {
-            font-size: 0.9rem;
-            color: #333;
-            margin: 0;
-        }
-
-        .card ul {
-            padding-left: 20px;
-            list-style-type: disc;
-        }
-
-        .info {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        .info-item i {
-            background-color: #f57c00;
-            color: #ffffff;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0.9rem;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #666;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        a {
-            text-decoration: none;
-            color: #f57c00;
-            transition: color 0.3s;
-        }
-
-        a:hover {
-            color: #d35400;
-        }
-    </style>
+    .section { padding: 72px 0; border-top: 1px solid var(--line); }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 30px; }
+    .section-heading h2 { margin: 8px 0 0; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -.045em; }
+    .section-heading p { max-width: 430px; margin: 0; color: var(--muted); }
+    .skill-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .panel, .skill-group { background: linear-gradient(145deg, rgba(255,255,255,.035), transparent 80%), var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+    .skill-group { padding: 24px; transition: border-color .25s, transform .25s; }
+    .skill-group:hover { transform: translateY(-4px); border-color: rgba(184,243,107,.45); }
+    .skill-group h3 { margin: 0 0 16px; font-size: 1rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 9px; }
+    .chip { padding: 6px 11px; border: 1px solid rgba(255,255,255,.11); border-radius: 999px; background: rgba(255,255,255,.035); color: #d8e0e7; font-size: .82rem; }
+    .chip.highlight { border-color: rgba(184,243,107,.3); color: var(--accent); }
+    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 18px; }
+    .panel { padding: 26px; }
+    .panel h3 { margin: 0 0 16px; font-size: 1.1rem; }
+    .panel p { margin: 0; color: var(--muted); }
+    .info-list { display: grid; gap: 13px; }
+    .info-row { display: grid; grid-template-columns: 28px 1fr; gap: 11px; align-items: start; color: var(--muted); overflow-wrap: anywhere; }
+    .info-row b { color: var(--accent-2); font-size: 1rem; }
+    .info-row a:hover { color: var(--accent); }
+    .timeline { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .timeline-card { position: relative; padding: 24px 24px 24px 28px; }
+    .timeline-card::before { content: ""; position: absolute; left: 0; top: 28px; bottom: 28px; width: 2px; background: var(--accent); border-radius: 2px; }
+    .meta { color: var(--accent); font-size: .78rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+    .timeline-card h3 { margin: 8px 0 5px; }
+    .timeline-card p, .timeline-card li { color: var(--muted); }
+    .timeline-card ul { margin: 8px 0 0; padding-left: 19px; }
+    .focus-card { padding: 30px; border-radius: var(--radius); background: linear-gradient(120deg, rgba(184,243,107,.12), rgba(119,222,208,.07)), var(--surface); border: 1px solid rgba(184,243,107,.2); }
+    .focus-card p { margin: 10px 0 0; color: var(--muted); max-width: 830px; }
+    footer { padding: 28px 0 42px; color: var(--muted); font-size: .85rem; text-align: center; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: .08s; } .delay-2 { transition-delay: .16s; } .delay-3 { transition-delay: .24s; }
+    @keyframes orbit { to { transform: rotate(365deg); } }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 30px, var(--max-width)); }
+      .nav-inner { min-height: 60px; } .nav-links { gap: 13px; font-size: .78rem; }
+      .hero { min-height: auto; grid-template-columns: 1fr; gap: 42px; padding-top: 72px; padding-bottom: 68px; }
+      .hero-copy { font-size: 1rem; } .portrait-frame { grid-row: 1; width: 190px; height: 350px; }
+      .photo-trigger { flex-basis: 165px; width: 165px; height: 165px; }
+      h1 { font-size: clamp(1.8rem, 7vw, 3rem); }
+      .section { padding: 58px 0; } .section-heading { align-items: start; flex-direction: column; }
+      .skill-groups, .about-grid, .timeline { grid-template-columns: 1fr; }
+      .photo-dialog-card { grid-template-columns: 1fr; gap: 17px; padding: 20px; }
+      .photo-dialog-image { height: min(48vh, 330px); }
+      .photo-dialog-info h2 { margin-bottom: 12px; }
+    }
+    @media (max-width: 440px) { .nav-links { gap: 10px; } .nav-links a { font-size: .72rem; } .brand { font-size: .8rem; } }
+    @media (prefers-reduced-motion: reduce) {
+      .photo-dialog[open], .photo-dialog.is-closing { animation: none; }
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <img src="Photo\img.jpg" alt="Profile Picture">
-            <h1>MD Fahim Al Fahad</h1>
-            <p>Computer Science Student</p>
-        </div>
-        
-        <div class="section">
-            <!-- Personal Information -->
-            <div class="card">
-                <h2>Personal Information</h2>
-                <div class="info">
-                    <div class="info-item">
-                        <i>📅</i> <span>26-11-2004</span>
-                    </div>
-                    <div class="info-item">
-                        <i>📧</i> <span>017fahim91@gmail.com</span>
-                    </div>
-                    <div class="info-item">
-                        <i>📞</i> <span>01791134834</span>
-                    </div>
-                    <div class="info-item">
-                        <i>📍</i> <span>Mirpur section 11</span>
-                    </div>
-                    <div class="info-item">
-                        <i>🌐</i> <a href="https://facebook.com/fahim.af.75" target="_blank">facebook.com/fahim.af.75</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Skills -->
-            <div class="card">
-                <h2>Skills</h2>
-                <p><strong>Language:</strong> English, Bangla, Japanese, Hindi, Urdu</p> 
-                <br>
-                <p><strong>Computer Skills:</strong> Adobe Photoshop, After Effects, Premiere Pro, Wondershare Filmora, Word, PowerPoint, Google Forms, Excel</p>
-                <br>
-                <!-- <p><strong>Programming Skil:</strong> HTML, C program , Node.js </p> -->
-            </div>
-
-        <!-- Work Experience -->
-        <div class="card">
-            <h2>Work Experience</h2>
-            <ul>
-                <li><strong>Tuition (2021 - Now):</strong> Tutored ICT, English, Physics, and Mathematics</li>
-                <li><strong>ZeusServer (2020 - 2023):</strong> Video Editor, VFX Designer</li>
-                <li><strong>Robi (2023 - 2024):</strong> Salesman</li>
-            </ul>
-        </div>
-            <!-- Education -->
-            <div class="card">
-                <h2>Education</h2>
-                <ul>
-                    <li><strong>Northern University Bangladesh:</strong> B.Sc. in CSE</li>
-                    <li><strong>HSC & SSC:</strong> Both in Science</li>
-                </ul>
-
-            </div>
-
-
-            <!-- Interests -->
-            <div class="card">
-                <h2>Interests</h2>
-                <p>Programming, Problem Solving, Gaming, Exploring New Technologies</p>
-            </div>          
-
-            <!-- Certifications -->
-            <div class="card">
-                <h2>Certifications</h2>
-                <ul>
-                    <li><strong>2019:</strong> Science Fair Certificate </li>
-                    <li><strong>2023:</strong> Computer Level 5 </li>
-                    <li><strong>2024:</strong> Electronics Level 2 Certification </li>
-                    <li><strong>2024:</strong> Japanese Language N5 Certification </li>
-                </ul>
-            </div>
-            <!-- Objective -->
-            <div class="card">
-                <h2>Objective</h2>
-                <p>I am completing my BSc in CSE at Northern University and simultaneously pursuing scholarships. I have already completed my IELTS in the NAT exam. In the next 4-5 years, I aim to gather enough experience to establish my own cybersecurity firm.</p>
-           </div> 
-            
-        </div>
-
-        <footer>
-            © 2024 MD Fahim Al Fahad
-        </footer>
+  <div class="progress" aria-hidden="true"></div>
+  <nav class="nav" aria-label="Main navigation">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top">FAHIM AL FAHAD<span>.</span></a>
+      <div class="nav-links"><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#education">Education</a></div>
     </div>
+  </nav>
+  <main id="top">
+    <header class="hero wrap">
+      <div class="hero-text">
+        <span class="eyebrow">CSE student · Creative technologist</span>
+        <h1>Md Fahim <span>Al Fahad</span></h1>
+        <p class="hero-copy">I bring together code, creative media, and hands-on problem solving—from building digital experiences to exploring practical prototypes.</p>
+        <div class="hero-actions"><a class="button primary" href="#about">Explore my profile <span aria-hidden="true">↓</span></a><a class="button" href="mailto:017fahim91@gmail.com">Get in touch <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="portrait-frame" aria-label="Two portraits of MD Fahim Al Fahad">
+        <button class="photo-trigger" type="button" aria-label="Enlarge formal portrait" data-photo="Photo/img.jpg" data-alt="Formal portrait of MD Fahim Al Fahad"><img src="Photo/img.jpg" alt="Formal portrait of MD Fahim Al Fahad"></button>
+        <button class="photo-trigger" type="button" aria-label="Enlarge outdoor portrait" data-photo="Photo/img2.jpg" data-alt="Outdoor portrait of MD Fahim Al Fahad"><img src="Photo/img2.jpg" alt="Outdoor portrait of MD Fahim Al Fahad"></button>
+      </div>
+    </header>
+
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="section-heading reveal"><div><span class="eyebrow">A little about me</span><h2>Curious by nature.<br>Builder by habit.</h2></div><p>Currently studying Computer Science and Engineering, with interests that span software, visual storytelling, technology, and making ideas tangible.</p></div>
+        <div class="about-grid">
+          <article class="panel reveal delay-1"><h3>Personal details</h3><div class="info-list">
+            <div class="info-row"><b>⌖</b><span>Mirpur</span></div>
+            <div class="info-row"><b>✉</b><a href="mailto:017fahim91@gmail.com">017fahim91@gmail.com</a></div>
+            <div class="info-row"><b>☎</b><a href="tel:+8801791134834">+880 1791-134834</a></div>
+            <div class="info-row"><b>↗</b><a href="https://facebook.com/fahim.af.75" target="_blank" rel="noopener noreferrer">Facebook profile</a></div>
+          </div></article>
+          <article class="panel reveal delay-2"><h3>Languages</h3><div class="chips"><span class="chip">English</span><span class="chip">Bangla</span><span class="chip">Japanese</span><span class="chip">Hindi</span><span class="chip">Urdu</span></div><p style="margin-top:18px">I enjoy learning new tools and taking on projects that combine analytical thinking with creativity.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="section-heading reveal"><div><span class="eyebrow">What I work with</span><h2>Skills & capabilities</h2></div><p>A growing, broad skill set across software, creative production, and practical technology.</p></div>
+        <div class="skill-groups">
+          <article class="skill-group reveal"><h3>Programming & development</h3><div class="chips"><span class="chip highlight">C</span><span class="chip highlight">C++</span><span class="chip highlight">C#</span><span class="chip highlight">Python</span><span class="chip highlight">HTML</span><span class="chip highlight">CSS</span><span class="chip highlight">Node.js</span><span class="chip highlight">Assembly language</span><span class="chip">App development</span><span class="chip">Web app development</span></div></article>
+          <article class="skill-group reveal delay-1"><h3>Creative production</h3><div class="chips"><span class="chip">Video editing</span><span class="chip">Visual effects (VFX)</span><span class="chip">Graphic design</span><span class="chip">Videography</span><span class="chip">Ad creation</span><span class="chip">Adobe Photoshop</span><span class="chip">Adobe After Effects</span><span class="chip">Adobe Premiere Pro</span><span class="chip">Wondershare Filmora</span></div></article>
+          <article class="skill-group reveal delay-2"><h3>Technology & making</h3><div class="chips"><span class="chip">Robotics</span><span class="chip">Coding</span><span class="chip">Practical prototyping</span><span class="chip">Physical prototyping</span><span class="chip">Electronics</span><span class="chip">Problem solving</span></div></article>
+          <article class="skill-group reveal delay-3"><h3>Productivity, data & marketing</h3><div class="chips"><span class="chip">Marketing</span><span class="chip">MySQL</span><span class="chip">Database management</span><span class="chip">Microsoft Word</span><span class="chip">PowerPoint</span><span class="chip">Excel</span><span class="chip">Google Sheets</span><span class="chip">Google Docs</span><span class="chip">Google Slides</span><span class="chip">Google Forms</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="wrap">
+        <div class="section-heading reveal"><div><span class="eyebrow">Selected work</span><h2>Projects & apps</h2></div><p>A selection of open-source tools and community bots I have built or worked on.</p></div>
+        <div class="timeline">
+          <article class="panel timeline-card reveal"><span class="meta">Open source · Media utility</span><h3><a href="https://github.com/kuroi75/KuroiYFetch" target="_blank" rel="noopener noreferrer">KuroiYFetch ↗</a></h3><p>An all-in-one bulk video and audio downloader.</p></article>
+          <article class="panel timeline-card reveal delay-1"><span class="meta">Open source · Cost calculator</span><h3><a href="https://github.com/kuroi75/China2BD-Calculator" target="_blank" rel="noopener noreferrer">China2BD-Calculator ↗</a></h3><p>A China-to-Bangladesh product and price calculator designed to make cost estimates easier.</p></article>
+          <article class="panel timeline-card reveal delay-2"><span class="meta">Discord bot · Music</span><h3>BanniKawaii</h3><p>A music bot for Discord.</p></article>
+          <article class="panel timeline-card reveal delay-3"><span class="meta">Discord bot · Administration</span><h3>BanniKun</h3><p>An administration bot for Discord.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="experience">
+      <div class="wrap">
+        <div class="section-heading reveal"><div><span class="eyebrow">Experience</span><h2>Work & practice</h2></div></div>
+        <div class="timeline">
+          <article class="panel timeline-card reveal"><span class="meta">2021 – Present</span><h3>Private Tutor</h3><p>Tutored students in ICT, English, Physics, and Mathematics.</p></article>
+          <article class="panel timeline-card reveal delay-1"><span class="meta">2020 – 2023</span><h3>Video Editor & VFX Designer · ZeusServer</h3><p>Worked on video editing and visual effects projects.</p></article>
+          <article class="panel timeline-card reveal delay-2"><span class="meta">2023 – 2024</span><h3>Salesman · Robi</h3><p>Customer-facing sales experience in a telecommunications setting.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <div class="wrap">
+        <div class="section-heading reveal"><div><span class="eyebrow">Education & achievements</span><h2>Learning in progress</h2></div></div>
+        <div class="timeline">
+          <article class="panel timeline-card reveal"><span class="meta">Undergraduate</span><h3>Northern University Bangladesh</h3><p>B.Sc. in Computer Science and Engineering.</p></article>
+          <article class="panel timeline-card reveal delay-1"><span class="meta">Science</span><h3>HSC & SSC</h3><p>Completed both levels in the Science group.</p></article>
+          <article class="panel timeline-card reveal delay-2"><span class="meta">2019 · 2023 · 2024</span><h3>Certifications</h3><ul><li>Science Fair Certificate (2019)</li><li>Computer Level 5 (2023)</li><li>Electronics Level 2 Certification (2024)</li><li>Japanese Language N5 Certification (2024)</li></ul></article>
+          <article class="panel timeline-card reveal delay-3"><span class="meta">Interests</span><h3>Always exploring</h3><p>Competitive gaming, drawing and sketching, building robots, vibe coding, creating mini apps, and exploring new technologies.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap reveal"><div class="focus-card"><span class="eyebrow">Looking ahead</span><h2 style="margin:10px 0 0; letter-spacing:-.04em">Building toward a bigger goal</h2><p>I am completing my B.Sc. in CSE at Northern University and pursuing scholarship opportunities. I have completed the NAT-TEST (Japanese-Language Proficiency Test). Over the next four to five years, I aim to gain experience and work toward establishing my own cybersecurity firm.</p></div></div>
+    </section>
+  </main>
+  <footer><div class="wrap">© <span id="year"></span> MD Fahim Al Fahad</div></footer>
+  <dialog class="photo-dialog" id="photoDialog" aria-labelledby="photoDialogName">
+    <div class="photo-dialog-card">
+      <button class="photo-close" type="button" aria-label="Close enlarged photo">×</button>
+      <img class="photo-dialog-image" id="photoDialogImage" src="" alt="">
+      <div class="photo-dialog-info">
+        <span class="eyebrow">Get in touch</span>
+        <h2 id="photoDialogName">Md Fahim Al Fahad</h2>
+        <p>☎ <a href="tel:+8801791134834">+880 1791-134834</a></p>
+        <p>✉ <a href="mailto:017fahim91@gmail.com">017fahim91@gmail.com</a></p>
+      </div>
+    </div>
+  </dialog>
+  <script>
+    const photoDialog = document.getElementById('photoDialog');
+    const photoDialogImage = document.getElementById('photoDialogImage');
+    const photoCloseButton = photoDialog.querySelector('.photo-close');
+    let photoCloseTimer;
+
+    document.querySelectorAll('.photo-trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        photoDialogImage.src = trigger.dataset.photo;
+        photoDialogImage.alt = trigger.dataset.alt;
+        photoDialog.classList.remove('is-closing');
+        photoDialog.showModal();
+        photoCloseButton.focus();
+      });
+    });
+
+    const closePhotoDialog = () => {
+      if (!photoDialog.open || photoDialog.classList.contains('is-closing')) return;
+      photoDialog.classList.add('is-closing');
+      photoCloseTimer = window.setTimeout(() => {
+        photoDialog.close();
+        photoDialog.classList.remove('is-closing');
+      }, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 180);
+    };
+
+    photoCloseButton.addEventListener('click', closePhotoDialog);
+    photoDialog.addEventListener('click', event => {
+      if (event.target === photoDialog) closePhotoDialog();
+    });
+    photoDialog.addEventListener('cancel', event => {
+      event.preventDefault();
+      closePhotoDialog();
+    });
+    photoDialog.addEventListener('close', () => window.clearTimeout(photoCloseTimer));
+    const progress = document.querySelector('.progress');
+    const updateProgress = () => {
+      const range = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = `${range > 0 ? (window.scrollY / range) * 100 : 0}%`;
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const revealItems = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const observer = new IntersectionObserver((entries, activeObserver) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            activeObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+      revealItems.forEach(item => observer.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add('visible'));
+    }
+  </script>
 </body>
 </html>
+
+
+
+
+
+
